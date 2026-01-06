@@ -5,4 +5,7 @@ public class PasswordCheckerApp {
     //prompt user for password
     //Check strength
     //Provide user feedback based on the strength
+    public static void main(String[] args) {
+
+    }
 }
