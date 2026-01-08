@@ -4,12 +4,19 @@ package org.hillcrest.chapter6.password;
  * Checks how many password criteria a given password meets
  * Then returns the number out of 5
  */
+
 public class CriteriaChecker {
 
     //   final static String NUMBERS = ("0123456789");
-    private static int score = 0;
+    public static int score = 0;
 
     //utility class
+
+    private static boolean lengthy;
+    private static boolean hasUpper;
+    private static boolean hasLower;
+    private static boolean hasNumber;
+    private static boolean hasSpecial;
 
     /**
      * Grades password criteria
@@ -17,41 +24,71 @@ public class CriteriaChecker {
      * @return the score of the password
      */
     public static int evaluateCriteria(String password) {
-        boolean lengthy = (password.length() >= 8);
-        boolean hasUpper = false;
-        boolean hasLower = false;
-        boolean hasNumber = false;
-        boolean hasSpecial = false;
+         lengthy = (password.length() >= 8);
+         hasUpper = false;
+         hasLower = false;
+        hasNumber = false;
+        hasSpecial = false;
 
         //       if (password.contains(NUMBERS)) {
         //           hasNumber = true;
         //       }
-        if (lengthy) {
-            score++;
-        }
         for (int i = 0; i < password.length(); i++) {
             char character = (password.charAt(i));
             if (Character.isUpperCase(character)) {
                 hasUpper = true;
-                score++;
+
             }
             character = (password.charAt(i));
             if (Character.isLowerCase(character)) {
                 hasLower = true;
-                score++;
+
             }
             if (Character.isDigit(password.charAt(i))) {
                 hasNumber = true;
-                score++;
+
             }
             if ((!(Character.isDigit(password.charAt(i)))) && (!(Character.isLetter(password.charAt(i))))) {
                 hasSpecial = true;
+
+            }
+        }
+            if (lengthy) {
+                score++;
+            }
+            if (hasUpper) {
+                score++;
+            }
+            if (hasLower) {
+                score++;
+            }
+            if (hasNumber) {
+                score++;
+            }
+            if (hasSpecial) {
                 score++;
             }
 
-        }
         return (score);
     }
+
+    public static boolean metLength() {
+        return lengthy;
+    }
+    public static boolean metUpper() {
+        return hasUpper;
+    }
+    public static boolean metLower() {
+        return hasLower;
+    }
+    public static boolean metNumber() {
+        return hasNumber;
+    }
+    public static boolean metSpecial() {
+        return hasSpecial;
+    }
+
+
 
     /**
      * Gives a description based on score
